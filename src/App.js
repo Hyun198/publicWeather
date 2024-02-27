@@ -3,7 +3,7 @@ import './App.css';
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import clear from './assets/clear.png';
-
+import temperature from './assets/temperature.png';
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
     let initDate = selectedDate.toISOString().slice(0, 10).replace(/-/g, '');
     const now = new Date();
     let hour = now.getHours();
-    hour = String(hour).padStart(2, '0');
+    hour = String(hour - 1).padStart(2, '0');
 
     const base_time = `${hour}00`;
     console.log(base_time);
@@ -102,8 +102,10 @@ function App() {
       <div className='card'>
         <div className="weather">
           <h2 className='city'>Weather in 김포</h2>
-          <h1 className="temp"> {weatherData && weatherData.firstTemp ? weatherData.firstTemp.fcstValue : '불러오는 중...'}°C</h1>
-          <img src="" alt="" className='icon' />
+          <div className='temp'>
+            <h1>{weatherData && weatherData.firstTemp ? weatherData.firstTemp.fcstValue : '불러오는 중...'}°C</h1>
+          </div>
+
           <div className='description'>Cloudy : {weatherData && weatherData.firstCloudy ? weatherData.firstCloudy.fcstValue : '불러오는 중...'} </div>
           <div className='humidity'>습도 : {weatherData && weatherData.firstHumidity ? weatherData.firstHumidity.fcstValue : '불러오는 중...'} %</div>
           <div className='rainy'>강수확률 : {weatherData && weatherData.firstRainy ? weatherData.firstRainy.fcstValue : '불러오는 중...'}  % </div>
